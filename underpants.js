@@ -21,6 +21,9 @@ var _ = {};
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
+_.identity = function(value){
+    return value
+}
 
 /** _.typeOf
 * Arguments:
@@ -42,6 +45,17 @@ var _ = {};
 * _.typeOf([1,2,3]) -> "array"
 */
 
+_.typeOf = function(value) {
+    return typeof value === 'string' ? 'string'
+    : Array.isArray(value) ? 'array'
+    : typeof value === 'object' && value !== null && !Array.isArray(value) ? 'object'
+    : typeof value === 'undefined' ? 'undefined'
+    : typeof value === 'number' ? 'number'
+    : typeof value === 'boolean' ? 'boolean'
+    : typeof value === 'function' ? 'function'
+    : 'null'
+}
+
 
 /** _.first
 * Arguments:
@@ -60,6 +74,15 @@ var _ = {};
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
+
+_.first = function(arr, num){
+    //if arr is not an array or num is less than 0, return empty array
+    return !Array.isArray(arr) || num < 0 ? []
+    // else if num is undefined or not a number return first item in array
+    : num === undefined || NaN ? arr[0]
+    // else return array from 0 to num
+    : arr.slice(0, num)
+}
 
 
 /** _.last
@@ -80,6 +103,16 @@ var _ = {};
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
+_.last = function(arr, num){
+    // if array is not an array return empty array
+    return !Array.isArray(arr) ? [] // not an array
+    : num < 0 ? [] // not positive
+    : num === undefined || num === NaN ? arr[arr.length - 1] //last argument
+    : num > arr.length ? arr // greater than whole array
+    : arr.slice(arr.length - num)
+   
+}
+
 
 /** _.indexOf
 * Arguments:
@@ -96,6 +129,16 @@ var _ = {};
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
+
+_.indexOf = function(arr, val) {
+    for (var i = 0; i = arr.length; i++){
+        if(!Array.isArray(arr)){
+            return -1
+        } else if (arr[i] === val){
+            return arr[i].length
+        }
+    }
+}
 
 
 /** _.contains
@@ -209,6 +252,19 @@ var _ = {};
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(collection, func){
+    // create output array
+    const output = [];
+    if (Array.isArray(collection)){
+        for (let i = 0; i <= collection.length; i++) {
+            const result = func(collection[i], i, collection)
+            output.push(result)
+        }
+    } else {
+
+    }
+}
+
 
 /** _.pluck
 * Arguments:
@@ -242,6 +298,11 @@ var _ = {};
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
+
+
+_.every = function() {
+
+}
 
 
 /** _.some
