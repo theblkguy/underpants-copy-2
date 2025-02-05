@@ -130,16 +130,23 @@ _.last = function(arr, num){
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+/**I: An Array
+ * O: The index of the array that is the first occurance of the value, 
+ *      or -1 if the value isn't in the array
+ * C: do not us [].indexOf()
+ * E: Array has multiple occurrances of the value,
+ *      the value isn't in an array
+ */
 _.indexOf = function(arr, val) {
-    for (var i = 0; i = arr.length; i++){
-        if(!Array.isArray(arr)){
-            return -1
-        } else if (arr[i] === val){
-            return arr[i].length
+    for (var i = 0; i < arr.length; i++){
+        if(arr[i] === val){
+            return i
         }
     }
+    if (arr[i] !== val){
+        return -1
+    }
 }
-
 
 /** _.contains
 * Arguments:
@@ -155,6 +162,14 @@ _.indexOf = function(arr, val) {
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = (arr, val) => {
+    for (var i = 0; i < arr.length; i++){
+        return arr[i] === val ? true
+        : false
+    }
+}
+
 
 
 /** _.each
