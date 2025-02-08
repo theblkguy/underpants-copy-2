@@ -164,11 +164,13 @@ _.indexOf = function(arr, val) {
 */
 
 _.contains = (arr, val) => {
-    for (var i = 0; i < arr.length; i++){
-        return arr[i] === val ? true
-        : false
+    let match = false;
+    for(var i = 0; i < arr.length; i++){
+        arr[i] === val ? match = true : match
     }
+    return match
 }
+
 
 
 
