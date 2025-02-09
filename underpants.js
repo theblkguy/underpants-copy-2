@@ -291,7 +291,21 @@ _.reject = (arr, func) => {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+ 
+_.partition = (arr, func) => {
+    // two empty arrays to hold the truthy and falsey results
+    let truthy = [];
+    let falsey = [];
+    let allResults = [];
+    // looping through array parameter
+    for(var i = 0; i < arr.length; i++){
+        func(arr[i], i, arr) == true ? truthy.push(arr[i]) 
+        : falsey.push(arr[i])
+    }
+    allResults.push(truthy)
+    allResults.push(falsey)
+    return allResults
+}
 
 /** _.map
 * Arguments:
