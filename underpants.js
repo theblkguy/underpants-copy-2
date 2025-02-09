@@ -190,6 +190,17 @@ _.contains = (arr, val) => {
 *      -> should log "a" "b" "c" to the console
 */
 
+_.each = (list, func) => {
+    if(Array.isArray(list)){
+        for(var i = 0; i < list.length; i++){
+            func(list[i], i, list)
+        }
+    } else {
+        for(var key in list){
+            func(list[key], key, list)
+        }
+    }
+}
 
 /** _.unique
 * Arguments:
@@ -201,6 +212,15 @@ _.contains = (arr, val) => {
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+_.unique = (arr) => {
+    let uniArr = [];
+    for(var i = 0; i < arr.length; i++){
+        if(_.indexOf(arr, arr[i]) === i){
+            uniArr.push(arr[i])
+        }
+    }
+    return uniArr
+}
 
 /** _.filter
 * Arguments:
@@ -218,6 +238,15 @@ _.contains = (arr, val) => {
 *   use _.each in your implementation
 */
 
+_.filter = (arr, func) => {
+    let newArr = [];
+    for(var i = 0; i < arr.length; i++) {
+        if(func(arr[i], i, arr) === true) {
+            newArr.push(arr[i])
+        }
+    }
+    return newArr
+}
 
 /** _.reject
 * Arguments:
@@ -231,6 +260,17 @@ _.contains = (arr, val) => {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = (arr, func) => {
+    let newArr = [];
+    for(var i = 0; i < arr.length; i++) {
+        if(!func(arr[i], i, arr) === true) {
+            newArr.push(arr[i])
+        }
+    }
+    return newArr
+}
+
 
 
 /** _.partition
