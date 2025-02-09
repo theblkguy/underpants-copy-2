@@ -327,13 +327,17 @@ _.map = function(collection, func){
     // create output array
     const output = [];
     if (Array.isArray(collection)){
-        for (let i = 0; i <= collection.length; i++) {
+        for (let i = 0; i < collection.length; i++) {
             const result = func(collection[i], i, collection)
             output.push(result)
         }
     } else {
-
+        for(var key in collection){
+            const result = func(collection[key], key, collection)
+            output.push(result)
+        }
     }
+    return output
 }
 
 
