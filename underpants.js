@@ -352,6 +352,12 @@ _.map = function(collection, func){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+// _.pluck = (arrOfObj, prop) => {
+ 
+//    let result = _.map(arrOfObj, (arrOfObj) => {
+
+//    })
+// }
 
 /** _.every
 * Arguments:
@@ -375,9 +381,7 @@ _.map = function(collection, func){
 */
 
 
-_.every = function() {
 
-}
 
 
 /** _.some
@@ -420,6 +424,27 @@ _.every = function() {
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
+
+_.reduce = function(arr, func, seed) {
+//     // initialize an output variable (what we are accumulating)
+    let output
+    if(seed === undefined ) {
+        output = arr[0]
+        for(let i = 1; i < arr.length; i++){
+            // reassign output to result of invoking func
+            output = func(output, arr[i], i); 
+        } 
+    } else {
+        output = seed;
+        for(let i = 0;i < arr.length; i++){
+            output = func(output, arr[i], i)
+        }  
+    }
+    return output
+}
+
+
+
 
 
 /** _.extend
