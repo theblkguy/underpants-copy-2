@@ -352,12 +352,14 @@ _.map = function(collection, func){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
-// _.pluck = (arrOfObj, prop) => {
- 
-//    let result = _.map(arrOfObj, (arrOfObj) => {
-
-//    })
-// }
+_.pluck = (arr, prop) => {
+    let pluckMe = _.map(arr, function(obj, prop){
+        for(var prop in obj){
+            return obj[prop]
+        } 
+    })
+    return pluckMe
+}
 
 /** _.every
 * Arguments:
@@ -381,6 +383,47 @@ _.map = function(collection, func){
 */
 
 
+_.every = (collection, func) => {
+    let result = true;
+    if(Array.isArray(collection)){
+        if(func === undefined){
+            for(let i = 0; i < collection.length; i++){
+                if(collection[i] == true){
+                    return true
+                } else {
+                    return false
+                }
+            }
+        } else {
+            for(let i = 0; i < collection.length; i++){
+                if(!func(collection[i], i, collection)){
+                    return false
+                } else {
+                    result = true
+                } 
+            }
+        }
+    } else {
+        if(func === undefined){
+            for(let key in collection){
+                if(collection[key] == true){
+                    return true
+                } else {
+                    return false
+                }
+            }
+        } else {
+            for(let key in collection){
+                if(!func(collection[key], key, collection)){
+                    return false
+                } else {
+                    return true
+                }
+            }
+        }
+    }
+    return result
+}
 
 
 
