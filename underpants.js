@@ -448,6 +448,49 @@ _.every = (collection, func) => {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = (collection, func) => {
+    let result = false;
+    if(Array.isArray(collection)){
+        if(func === undefined){
+            for(let i = 0; i < collection.length; i++){
+                if(collection[i] == true){
+                    return true
+                } else {
+                    result = false
+                }
+            }
+        } else {
+            for(let i = 0; i < collection.length; i++){
+                if(!func(collection[i], i, collection)){
+                    result = false
+                } else {
+                    return true
+                } 
+            }
+        }
+    } else {
+        if(func === undefined){
+            for(let key in collection){
+                if(collection[key] == true){
+                    return true
+                } else {
+                    result = false
+                }
+            }
+        } else {
+            for(let key in collection){
+                if(!func(collection[key], key, collection)){
+                    result = false
+                } else {
+                    return true
+                }
+            }
+        }
+    }
+    return result
+}
+
+
 
 /** _.reduce
 * Arguments:
